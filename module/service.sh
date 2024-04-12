@@ -60,15 +60,17 @@ check_and_update() {
     # Log the message
     echo "$(date) - Update description to $MESSAGE" >> $LOG_FILE
     # Modify description
-    sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/module.prop"
+    W=$(sed -E "s/^description=(\[.*][[:space:]]*)?/description=[ $MESSAGE ] /g" "$MODDIR/module.prop")
+    echo -n "$W" > "$MODDIR/module.prop"
+
 }
 
 # Mise a jour du module.prop et ajout du message de version avec la date et l'heure de dernière verification
 DATE="unknown"
 MESSAGE="En marche | Dernière vérification: $DATE => Version $(cat $INSTALLED_VERSION_FILE) installée."
 
-# Modify description
-sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/module.prop"
+W=$(sed -E "s/^description=(\[.*][[:space:]]*)?/description=[ $MESSAGE ] /g" "$MODDIR/module.prop")
+echo -n "$W" > "$MODDIR/module.prop"
 
 #Log the start
 echo "$(date) - Starting the service..." >> $LOG_FILE
@@ -76,4 +78,4 @@ echo "$(date) - Starting the service..." >> $LOG_FILE
 while true; do
     check_and_update
     sleep 300  # Attendre 5 minutes (300 secondes)
-done
+done &  # Exécuter en arrière-plan

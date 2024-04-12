@@ -32,7 +32,8 @@ download_and_install() {
     MESSAGE="En attente de redémarrage 🔄 | Dernière vérification: $DATE => Version $CURRENT_VERSION installée."
 
     # Modify description
-    sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/module.prop"
+    W=$(sed -E "s/^description=(\[.*][[:space:]]*)?/description=[ $MESSAGE ] /g" "$MODDIR/module.prop")
+    echo -n "$W" > "$MODDIR/module.prop"
 
     ui_print "Installation terminée. Papillon est à jour. (Version $CURRENT_VERSION)"
 }
