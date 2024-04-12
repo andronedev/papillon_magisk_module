@@ -1,6 +1,6 @@
 {
-    "version": "1.0.2",
-    "versionCode": 3,
-    "zipUrl": "https://github.com/andronedev/papillon_magisk_module/releases/download/1.0.3/PapillonMagiskProd.zip",
+    "version": "1.0.3",
+    "versionCode": 4,
+    "zipUrl": "https://github.com/andronedev/papillon_magisk_module/releases/download/1.0.4/papillonMagiskProd.zip",
     "changelog": "https://raw.githubusercontent.com/andronedev/papillon_magisk_module/main/changelog.md"
 }
