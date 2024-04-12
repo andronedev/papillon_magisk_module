@@ -1,7 +1,7 @@
 id=papillon_updater
 name=Papillon Auto Updater
-version=1.0.1
-versionCode=2
+version=1.0.2
+versionCode=3
 author=andronedev
 description=Module pour mettre à jour automatiquement Papillon à partir des releases GitHub.
 updateJson=https://raw.githubusercontent.com/andronedev/papillon_magisk_module/main/update.json
