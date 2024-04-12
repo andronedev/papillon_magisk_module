@@ -29,7 +29,7 @@ download_and_install() {
 
     # Mise a jour du module.prop et ajout du message de version avec la date et l'heure de dernière verification
     DATE=$(date)
-    MESSAGE="En attente de redémarrage 🔄 | Dernière vérification: $DATE => Version `$CURRENT_VERSION` installée."
+    MESSAGE="En attente de redémarrage 🔄 | Dernière vérification: $DATE => Version $CURRENT_VERSION installée."
 
     # Modify description
     sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/module.prop"
