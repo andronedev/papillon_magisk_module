@@ -38,13 +38,20 @@ check_and_update() {
     fi
     
     # Mise a jour du module.prop et ajout du message de version avec la date et l'heure de dernière verification
-    MESSAGE="En marche 👌 | Dernière vérification: $(date +'%d/%m/%Y %H:%M') => $CURRENT_VERSION installée."
+    DATE=$(date)
+    MESSAGE="En marche | Dernière vérification: $DATE => Version `$CURRENT_VERSION` installée."
 
     # Modify description
-    cp "$MODPATH/module.prop" "$MODPATH/temp.prop"
-    sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/temp.prop"
-    mv "$MODPATH/temp.prop" "$MODPATH/module.prop"
+    sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/module.prop"
+
 }
+
+# Mise a jour du module.prop et ajout du message de version avec la date et l'heure de dernière verification
+DATE="unknown"
+MESSAGE="En marche | Dernière vérification: $DATE => Version `$(cat $INSTALLED_VERSION_FILE)` installée."
+
+# Modify description
+sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/module.prop"
 
 while true; do
     check_and_update

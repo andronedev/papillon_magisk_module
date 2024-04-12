@@ -28,12 +28,11 @@ download_and_install() {
     echo $CURRENT_VERSION > $INSTALLED_VERSION_FILE
 
     # Mise a jour du module.prop et ajout du message de version avec la date et l'heure de dernière verification
-    MESSAGE="En attente de redémarrage 🔄 | Dernière vérification: $(date +'%d/%m/%Y %H:%M') => $CURRENT_VERSION installée."
+    DATE=$(date)
+    MESSAGE="En attente de redémarrage 🔄 | Dernière vérification: $DATE => Version `$CURRENT_VERSION` installée."
 
     # Modify description
-    cp "$MODPATH/module.prop" "$MODPATH/temp.prop"
-    sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/temp.prop"
-    mv "$MODPATH/temp.prop" "$MODPATH/module.prop"
+    sed -Ei "s/^description=(\[.*][[:space:]]*)?/description=[$MESSAGE] /g" "$MODPATH/module.prop"
 
     ui_print "Installation terminée. Papillon est à jour. (Version $CURRENT_VERSION)"
 }
