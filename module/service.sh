@@ -74,6 +74,9 @@ while [ "$(getprop sys.boot_completed)" != "1" ]; do
     sleep 1
 done
 
+# wait for the system to be ready
+sleep 30
+
 # Mise a jour du module.prop et ajout du message de version avec la date et l'heure de dernière verification
 DATE="unknown"
 MESSAGE="En marche | Dernière vérification: $DATE => Version $(cat $INSTALLED_VERSION_FILE) installée."
