@@ -5,7 +5,11 @@ INSTALLED_VERSION_FILE="$MODDIR/installed_version.txt"
 GITHUB_API_URL="https://api.github.com/repos/papillonapp/papillon/releases/latest"
 PACKAGE_NAME="xyz.getpapillon.app"
 APK_PATH="$MODDIR/papillon.apk"
-LOG_FILE="$MODDIR/log.txt"
+LOG_FILE="/dev/null"
+INTERVAL=$(cat $MODDIR/interval.txt)
+echo "interval file detected: $INTERVAL" >> $LOG_FILE
+# if the interval file is empty, set the default interval to 6h
+[ -z "$INTERVAL" ] && INTERVAL=21600
 
 check_and_update() {
     # add date to log 
@@ -64,6 +68,11 @@ check_and_update() {
     echo -n "$W" > "$MODDIR/module.prop"
 
 }
+
+# Wait until the device is ready
+while [ "$(getprop sys.boot_completed)" != "1" ]; do
+    sleep 1
+done
 
 # Mise a jour du module.prop et ajout du message de version avec la date et l'heure de dernière verification
 DATE="unknown"
